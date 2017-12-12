@@ -8,14 +8,13 @@ public class ArmaScript : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Start () {
-		
+	IEnumerator Start () {
+		yield return new WaitForSeconds (0.3f);
+
+		Instantiate (projetil, transform.position, transform.rotation);
+
+		StartCoroutine (Start ());
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		if (Input.GetButtonDown ("Jump")) {
-			Instantiate (projetil, transform.position, transform.rotation);
-		}
-	}
+
 }

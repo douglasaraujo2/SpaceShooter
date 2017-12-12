@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ProjetilScript : MonoBehaviour {
 
@@ -8,10 +9,10 @@ public class ProjetilScript : MonoBehaviour {
 	public float tempoDeVida;
 	public GameObject explosaoPrefab;
 
-
 	// Use this for initialization
 	void Start () {
 		Destroy (gameObject, tempoDeVida);
+
 	}
 	
 	// Update is called once per frame
@@ -23,8 +24,8 @@ public class ProjetilScript : MonoBehaviour {
 		if (c.gameObject.tag == "Inimigo") {
 			Instantiate (explosaoPrefab, transform.position, transform.rotation);
 			Destroy (c.gameObject);
-			Destroy (gameObject);
-
+			Destroy (gameObject);		
+			JogadorScript.pontos++;
 		}
 		
 	}
