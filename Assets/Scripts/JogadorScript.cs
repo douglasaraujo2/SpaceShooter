@@ -6,15 +6,12 @@ public class JogadorScript : MonoBehaviour {
 
 	public float velocidade;
 	public float limiteEsquerdo, limiteDireito;
-	void Start () {
-		
-	}
-	
+	public int vidas;
+	public GameObject explosaoPrefab;
+
 
 	void Update () {
-		Mover ();
-
-			
+		Mover ();			
 	}
 
 
@@ -26,4 +23,18 @@ public class JogadorScript : MonoBehaviour {
 			transform.position = new Vector2 (transform.position.x * -1 ,transform.position.y);
 		}
 	}
+
+
+	void OnCollisionEnter2D(Collision2D c){
+		if (c.gameObject.tag == "Inimigo") {
+			vidas--;
+			Instantiate (explosaoPrefab, transform.position, transform.rotation);
+			Destroy (c.gameObject);
+			if (vidas <= 0) {
+				
+				Destroy (gameObject);
+			}
+		}
+	}
+
 }
